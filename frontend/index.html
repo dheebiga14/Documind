@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DocuMind AI — Intelligent Document Assistant</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">D</div>
+
+            <div>
+                <h2>DocuMind</h2>
+                <span>AI Document Intelligence</span>
+            </div>
+        </div>
+
+
+        <nav>
+
+            <button class="nav-item active" onclick="showSection('dashboard')">
+                <span>⌂</span>
+                Dashboard
+            </button>
+
+            <button class="nav-item" onclick="showSection('documents')">
+                <span>▤</span>
+                Documents
+            </button>
+
+            <button class="nav-item" onclick="showSection('search')">
+                <span>⌕</span>
+                Semantic Search
+            </button>
+
+            <button class="nav-item" onclick="showSection('assistant')">
+                <span>✦</span>
+                AI Assistant
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="backend-status">
+
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>Backend</strong>
+                    <small id="backendStatus">Checking...</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main">
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div>
+                <h1 id="pageTitle">Dashboard</h1>
+
+                <p>
+                    Manage, search and understand your documents intelligently.
+                </p>
+            </div>
+
+            <div class="header-status">
+                <span class="status-dot"></span>
+                System Online
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+
+        <section id="dashboard" class="section active">
+
+            <div class="welcome-card">
+
+                <div>
+
+                    <p class="eyebrow">
+                        AI-POWERED DOCUMENT MANAGEMENT
+                    </p>
+
+                    <h2>
+                        Welcome to DocuMind AI
+                    </h2>
+
+                    <p>
+                        Upload your documents and use intelligent semantic
+                        search and concise AI question answering with voice input & output.
+                    </p>
+
+                    <button
+                        class="primary-btn"
+                        onclick="showSection('documents')"
+                    >
+                        Manage Documents →
+                    </button>
+
+                </div>
+
+                <div class="welcome-icon">
+                    ✦
+                </div>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ▤
+                    </div>
+
+                    <div>
+                        <span>Total Documents</span>
+                        <strong id="documentCount">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ⌕
+                    </div>
+
+                    <div>
+                        <span>Search</span>
+                        <strong>Semantic & Snippets</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✦
+                    </div>
+
+                    <div>
+                        <span>AI Assistant</span>
+                        <strong>Voice + Grounded AI</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="content-card">
+
+                <h3>Quick Actions</h3>
+
+                <div class="quick-actions">
+
+                    <button
+                        class="quick-card"
+                        onclick="showSection('documents')"
+                    >
+                        <span>📄</span>
+
+                        <div>
+                            <strong>Upload Document</strong>
+                            <small>PDF, DOCX or TXT with Auto-Categorization</small>
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        class="quick-card"
+                        onclick="showSection('search')"
+                    >
+                        <span>🔍</span>
+
+                        <div>
+                            <strong>Search Documents</strong>
+                            <small>Semantic matches with snippets & expand</small>
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        class="quick-card"
+                        onclick="showSection('assistant')"
+                    >
+                        <span>🤖</span>
+
+                        <div>
+                            <strong>Ask AI</strong>
+                            <small>Voice input, concise answers & voice playback</small>
+                        </div>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DOCUMENTS -->
+
+        <section id="documents" class="section">
+
+            <div class="content-card">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Document Management</h2>
+
+                        <p>
+                            Upload and manage your documents with automatic categorization and tags.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- UPLOAD -->
+
+                <div class="upload-box">
+
+                    <div class="upload-icon">
+                        ↑
+                    </div>
+
+                    <h3>Upload a document</h3>
+
+                    <p>
+                        Supported formats: PDF, DOCX and TXT
+                    </p>
+
+                    <input
+                        type="file"
+                        id="fileInput"
+                        accept=".pdf,.docx,.txt"
+                    >
+
+                    <label
+                        for="fileInput"
+                        class="file-label"
+                    >
+                        Choose File
+                    </label>
+
+                    <span id="selectedFile">
+                        No file selected
+                    </span>
+
+                    <button
+                        class="primary-btn"
+                        onclick="uploadDocument()"
+                    >
+                        Upload Document
+                    </button>
+
+                    <div
+                        id="uploadMessage"
+                        class="message"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DOCUMENT LIST -->
+
+            <div class="content-card">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Your Documents</h2>
+
+                        <p>
+                            Organized by categories and tags.
+                        </p>
+                    </div>
+
+                    <button
+                        class="secondary-btn"
+                        onclick="loadDocuments()"
+                    >
+                        Refresh
+                    </button>
+
+                </div>
+
+                <!-- CATEGORY FILTER PILLS -->
+                <div class="category-filter-wrapper">
+                    <span class="category-filter-title">Filter by Category:</span>
+                    <div class="category-pills" id="categoryPills">
+                        <button class="category-pill active" onclick="setCategoryFilter('All')">All Categories</button>
+                        <button class="category-pill" onclick="setCategoryFilter('Artificial Intelligence')">Artificial Intelligence</button>
+                        <button class="category-pill" onclick="setCategoryFilter('Software Engineering')">Software Engineering</button>
+                        <button class="category-pill" onclick="setCategoryFilter('Education')">Education</button>
+                        <button class="category-pill" onclick="setCategoryFilter('Research')">Research</button>
+                        <button class="category-pill" onclick="setCategoryFilter('Programming')">Programming</button>
+                        <button class="category-pill" onclick="setCategoryFilter('Business')">Business</button>
+                        <button class="category-pill" onclick="setCategoryFilter('Other')">Other</button>
+                    </div>
+                </div>
+
+                <div id="documentList">
+
+                    <div class="empty-state">
+                        No documents uploaded yet.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SEARCH -->
+
+        <section id="search" class="section">
+
+            <div class="content-card">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Semantic Search</h2>
+
+                        <p>
+                            Search by meaning instead of exact keywords. View top 3–5 relevant matches with text snippets.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="search-box">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Example: How does machine learning work?"
+                        onkeydown="if(event.key === 'Enter') searchDocuments()"
+                    >
+
+                    <button
+                        class="primary-btn"
+                        onclick="searchDocuments()"
+                    >
+                        Search
+                    </button>
+
+                </div>
+
+
+                <div id="searchResults">
+
+                    <div class="empty-state">
+                        Enter a question or topic to search your documents.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- AI ASSISTANT -->
+
+        <section id="assistant" class="section">
+
+            <div class="content-card assistant-card">
+
+                <div class="assistant-header">
+
+                    <div class="assistant-icon">
+                        ✦
+                    </div>
+
+                    <div>
+                        <h2>DocuMind AI Assistant</h2>
+
+                        <p>
+                            Ask questions with voice or text, get concise grounded answers, and listen to voice responses.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div id="chatArea" class="chat-area">
+
+                    <div class="assistant-welcome">
+
+                        <div class="big-ai-icon">
+                            ✦
+                        </div>
+
+                        <h3>
+                            What would you like to know?
+                        </h3>
+
+                        <p>
+                            Ask a question about your uploaded documents or use the microphone to speak.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VOICE STATUS BANNER -->
+                <div id="voiceStatusBanner" class="voice-status-banner" style="display: none;">
+                    <div class="voice-pulse-ring"></div>
+                    <span id="voiceStatusText">Listening... Speak your question now</span>
+                    <button class="voice-stop-btn" onclick="stopVoiceRecognition()" type="button">Stop</button>
+                </div>
+
+
+                <!-- QUESTION INPUT & CONTROLS -->
+                <div class="question-box">
+
+                    <input
+                        type="text"
+                        id="questionInput"
+                        placeholder="Ask something about your documents (or click the microphone to speak)..."
+                        onkeydown="if(event.key === 'Enter') askAI()"
+                    >
+
+                    <button
+                        type="button"
+                        id="micBtn"
+                        class="mic-btn"
+                        onclick="toggleVoiceRecognition()"
+                        title="Voice Input (Speech-to-Text)"
+                    >
+                        <span id="micIcon" class="mic-icon">🎙️</span>
+                        <span id="micLabel">Speak</span>
+                    </button>
+
+                    <button
+                        class="primary-btn"
+                        onclick="askAI()"
+                    >
+                        Ask AI
+                    </button>
+
+                </div>
+
+
+                <div id="askMessage" class="message"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- DOCUMENT SUMMARY MODAL -->
+    <div id="summaryModal" class="modal-backdrop" style="display: none;" onclick="closeSummaryModal(event)">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <span class="modal-doc-icon" id="modalDocIcon">📄</span>
+                    <div>
+                        <h3 id="modalDocTitle">Document Summary</h3>
+                        <div class="modal-meta-pills" id="modalDocMeta"></div>
+                    </div>
+                </div>
+                <button class="modal-close-btn" onclick="closeSummaryModal()" title="Close">&times;</button>
+            </div>
+
+            <div class="modal-body" id="modalBody">
+                <!-- Stats Grid -->
+                <div class="modal-stats-grid" id="modalStatsGrid"></div>
+
+                <!-- Overview -->
+                <div class="summary-section">
+                    <h4>Executive Summary</h4>
+                    <p id="modalOverview" class="summary-overview"></p>
+                </div>
+
+                <!-- Key Points -->
+                <div class="summary-section">
+                    <h4>Key Takeaways & Highlights</h4>
+                    <ul id="modalKeyPoints" class="summary-bullets"></ul>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="secondary-btn" onclick="closeSummaryModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

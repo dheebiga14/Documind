@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local configuration and databases
+.env
+*.db
+
+# User-uploaded documents
+backend/uploads/*.pdf
